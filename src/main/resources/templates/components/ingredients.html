@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="ingredient(name, description, qty, unit)"
+     class="card text-dark bg-light mb-3" style="max-width: 18rem;"
+>
+    <div class="card-body">
+        <h6 class="card-title" th:text="${name}"></h6>
+        <p class="card-text" th:text="${description}"></p>
+        <p class="card-text">Ilość: <span th:text="${qty}"></span> <span th:text="${unit}"></span></p>
+        <button type="button" class="btn btn-sm btn-success">+ Dodaj ilość</button>
+    </div>
+</div>
+</body>
+</html>

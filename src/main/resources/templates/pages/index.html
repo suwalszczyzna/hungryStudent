@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Strona główna | Głodny student</title>
+</head>
+<body>
+<section>
+    <h1 class="display-5">Dashboard</h1>
+</section>
+<section>
+    <h1>Lodówka</h1>
+    <button type="button" class="btn btn-primary">Dodaj nowy produkt</button>
+    <div class="my-2">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div th:replace="components/ingredients :: ingredient('Ziemniaki', 'Pyszne polskie pyry', '10', 'kg')"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
