@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Jednostki miary | Głodny student</title>
+</head>
+<body>
+<section class="my-2">
+    <h1 class="display-4">Jednostki miary</h1>
+    <h3>Dodaj nową jednostkę</h3>
+</section>
+<section class="my-2">
+    <form action="#" th:action="@{/units/save}" th:object="${unit}" method="POST">
+
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-group">
+            <label for="unitName">Nazwa jednostki</label>
+            <input type="text" th:field="*{name}" class="form-control" id="unitName" aria-describedby="unitHelp" placeholder="Nazwa jednostki">
+        </div>
+        <div class="form-group">
+            <label for="unitShortcut">Skrót</label>
+            <input  type="text" th:field="*{shortcutName}" class="form-control" id="unitShortcut" placeholder="Skrót jednostki, np. kg">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+    </form>
+</section>
+</body>
+</html>

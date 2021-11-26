@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Jednostki miary | Głodny student</title>
+</head>
+<body>
+<section class="my-2">
+    <h1 class="display-4">Jednostki miary</h1>
+    <div>
+        <a th:href="@{/units/add}" type="button" class="btn btn-primary">Dodaj nową jednostkę miary</a>
+    </div>
+</section>
+<section class="my-2">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            th:each="unit: ${units}">
+            <p>
+                <span th:text="${unit.shortcutName}"></span>.,
+                <span th:text="${unit.name}"></span>
+            </p>
+            <div class="btn-group" role="group" aria-label="unit operations">
+                <a th:href="@{/units/showUpdate/{id}(id=${unit.id})}" class="btn btn-outline-primary">Edytuj</a>
+                <a th:href="@{/units/deleteUnit/{id}(id=${unit.id})}" class="btn btn-outline-danger">Usuń</a>
+            </div>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

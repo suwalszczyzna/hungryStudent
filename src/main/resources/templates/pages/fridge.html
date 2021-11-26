@@ -9,24 +9,21 @@
     <h1 class="display-4">Lodówka</h1>
     <div>
         <button type="button" class="btn btn-primary">Dodaj nowy produkt</button>
-        <button type="button" class="btn btn-outline-primary">Zarządzaj jednostkami miary</button>
+        <a th:href="@{/units}" type="button" class="btn btn-outline-primary">Zarządzaj jednostkami miary</a>
     </div>
 </section>
 <section class="my-2">
     <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Ziemniaki
-            <span>Ilość <span class="badge bg-info badge-pill">14 kg</span></span>
-
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-success btn-sm">Zwiększ ilość</button>
-                <button type="button" class="btn btn-outline-primary btn-sm">Edytuj</button>
-                <button type="button" class="btn btn-outline-danger btn-sm">Usuń</button>
-            </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Ziemniaki
-            <span>Ilość <span class="badge bg-danger badge-pill">0 kg</span></span>
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            th:each="fridgeItem: ${ingredients}"
+        >
+            <span th:text="${fridgeItem.name}"></span>
+            <span>Ilość:
+                <span class="badge bg-info badge-pill">
+                    <span th:text="${fridgeItem.amount}"></span>
+                    <span th:text="${fridgeItem.unitShortName}"></span>.
+                </span>
+            </span>
 
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-success btn-sm">Zwiększ ilość</button>
