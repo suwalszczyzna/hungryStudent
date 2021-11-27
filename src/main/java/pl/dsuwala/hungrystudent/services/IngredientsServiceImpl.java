@@ -19,4 +19,9 @@ public class IngredientsServiceImpl implements IngredientsService{
     public List<Ingredient> getAll() {
         return ingredientRepository.findAll();
     }
+
+    @Override
+    public void saveIngredient(Ingredient ingredient) {
+        ingredientRepository.save(ingredient);
+    }
 }
