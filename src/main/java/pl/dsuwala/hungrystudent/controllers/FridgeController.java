@@ -7,23 +7,23 @@ import pl.dsuwala.hungrystudent.domain.Ingredient;
 import pl.dsuwala.hungrystudent.services.FridgeServiceImpl;
 import pl.dsuwala.hungrystudent.services.IngredientsServiceImpl;
 import pl.dsuwala.hungrystudent.services.UnitServiceImpl;
+import pl.dsuwala.hungrystudent.utils.ViewModelConverter;
 
 @Controller
 public class FridgeController {
 
     private IngredientsServiceImpl ingredientsService;
-    private FridgeServiceImpl fridgeService;
     private UnitServiceImpl unitService;
 
-    public FridgeController(IngredientsServiceImpl ingredientsService, FridgeServiceImpl fridgeService, UnitServiceImpl unitService) {
+    public FridgeController(IngredientsServiceImpl ingredientsService, UnitServiceImpl unitService) {
         this.ingredientsService = ingredientsService;
-        this.fridgeService = fridgeService;
         this.unitService = unitService;
     }
 
     @GetMapping("/fridge")
     public String showAllItems(Model model){
-        var ingredients = fridgeService.convertIngredientsToViewModel(
+
+        var ingredients = ViewModelConverter.ingredientsToFridgeVM(
                 ingredientsService.getAll()
         );
         var units = unitService.getAllUnits();

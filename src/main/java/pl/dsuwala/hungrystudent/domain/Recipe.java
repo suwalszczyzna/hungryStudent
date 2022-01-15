@@ -9,6 +9,8 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @OneToMany(mappedBy = "recipe")
@@ -70,5 +72,15 @@ public class Recipe {
 
     public void setTimeConsuming(int timeConsuming) {
         this.timeConsuming = timeConsuming;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", timeConsuming=" + timeConsuming +
+                '}';
     }
 }

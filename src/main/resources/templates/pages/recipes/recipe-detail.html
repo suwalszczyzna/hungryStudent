@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Przepisy | Głodny student</title>
+</head>
+<body>
+<section class="my-2 container">
+    <h1 class="display-4" th:text="${recipe.name}">Tytuł przepisu</h1>
+    <div class="card p-lg-4" style="width: 100%">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4><i class="fas fa-carrot"></i> Składniki</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" th:each="ingredient: ${recipe.ingredients}">
+                            <strong><span th:remove="tag" th:text="${ingredient.name}"></span></strong>:
+                            <span th:remove="tag" th:text="${#numbers.formatDecimal(ingredient.recipeAmount, 0, 1)}"></span>
+                            <span th:remove="tag" th:text="${ingredient.unitName}"></span>.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-8">
+                    <h4><i class="fas fa-mortar-pestle"></i> Opis przygotowania</h4>
+                    <p th:utext="${recipe.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
