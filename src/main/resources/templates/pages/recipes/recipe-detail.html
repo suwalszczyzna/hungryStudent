@@ -2,27 +2,88 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="layout :: layout(~{::title}, ~{::section})">
 <head>
-    <title>Przepisy | Głodny student</title>
+    <title th:text="${recipe.name + ' | Głodny student'}"></title>
 </head>
+
 <body>
 <section class="my-2 container">
     <h1 class="display-4" th:text="${recipe.name}">Tytuł przepisu</h1>
-    <div class="card p-lg-4" style="width: 100%">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h4><i class="fas fa-carrot"></i> Składniki</h4>
+
+    <div class="row">
+        <div class="col">
+            <div class="row card m-1">
+                <div class="card-header">
+                    <i class="fas fa-carrot"></i> Składniki
+                </div>
+                <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" th:each="ingredient: ${recipe.ingredients}">
                             <strong><span th:remove="tag" th:text="${ingredient.name}"></span></strong>:
-                            <span th:remove="tag" th:text="${#numbers.formatDecimal(ingredient.recipeAmount, 0, 1)}"></span>
+                            <span th:remove="tag"
+                                  th:text="${#numbers.formatDecimal(ingredient.recipeAmount, 0, 1)}"></span>
                             <span th:remove="tag" th:text="${ingredient.unitName}"></span>.
                         </li>
                     </ul>
                 </div>
-                <div class="col-8">
-                    <h4><i class="fas fa-mortar-pestle"></i> Opis przygotowania</h4>
-                    <p th:utext="${recipe.description}"></p>
+            </div>
+            <div class="row card m-1">
+                <div class="card-header">
+                    <i class="fas fa-solid fa-comment-dots"></i> Informacje
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Czas gotowania</strong>:
+                            <span th:remove="tag" th:text="${recipe.timeConsuming + ' minut'}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row card m-1">
+                <div class="card-body d-flex flex-row flex-wrap gap-2">
+                    <a class="btn btn-sm btn-outline-primary flex-grow-1"
+                       th:href="@{/recipes/edit/{id}(id=${recipe.id})}">
+                        <i class="fas fa-solid fa-pen"></i> Edytuj opis
+                    </a>
+                    <a class="btn btn-sm btn-outline-primary flex-grow-1"
+                       th:href="@{/recipes/edit/{id}/ingredients(id=${recipe.id})}">
+                        <i class="fas fa-solid fa-lemon"></i> Edytuj składniki
+                    </a>
+                    <button class="btn btn-sm btn-outline-danger flex-grow-1"
+                            data-bs-toggle="modal" data-bs-target="#deleteRecipeModal">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <div class="card m-1">
+                <div class="card-header">
+                    <i class="fas fa-mortar-pestle"></i> Opis przygotowania
+                </div>
+
+                <div class="card-body recipe-desc">
+                    <p th:remove="tag" th:utext="${recipe.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteRecipeModal" tabindex="-1" aria-labelledby="deleteRecipeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteRecipeModalLabel">Usuwanie</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p th:text="${'Czy na pewno chcesz usunąć przepis ' + recipe.name + '?'}"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <a th:href="@{/recipes/delete/{id}(id=${recipe.id})}" class="btn btn-danger"><i
+                            class="fas fa-trash-alt"></i>Usuń</a>
                 </div>
             </div>
         </div>

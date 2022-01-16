@@ -7,7 +7,6 @@ import pl.dsuwala.hungrystudent.domain.RecipeIngredient;
 import pl.dsuwala.hungrystudent.repo.RecipeIngredientRepository;
 import pl.dsuwala.hungrystudent.repo.RecipeRepository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,10 +43,23 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
+    public void addIngredient(RecipeIngredient recipeIngredient) {
+        recipeIngredientRepository.save(recipeIngredient);
+    }
+
+    @Override
     public void addIngredient(Long recipeId, RecipeIngredient recipeIngredient) {
         Recipe recipe = getRecipeById(recipeId);
         recipeIngredient.setRecipe(recipe);
         recipeIngredientRepository.save(recipeIngredient);
+    }
+
+    @Override
+    public RecipeIngredient getRecipeIngredient(Long id) {
+        var ingredient = recipeIngredientRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Invalid RecipeIngredient id: " + id)
+        );
+        return ingredient;
     }
 
     @Override
@@ -58,5 +70,19 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public List<Ingredient> getIngredients(Long recipeId) {
         return recipeIngredientRepository.findAllIngredients(recipeId);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        var recipe = recipeRepository
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Recipe does not exist with id: " + id));
+
+        recipeRepository.delete(recipe);
+    }
+
+    @Override
+    public void removeIngredient(RecipeIngredient recipeIngredient) {
+        recipeIngredientRepository.delete(recipeIngredient);
     }
 }

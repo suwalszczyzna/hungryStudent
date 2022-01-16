@@ -11,7 +11,11 @@ public interface RecipeService {
     List<Recipe> getAll();
     void save(Recipe recipe);
     Recipe getRecipeById(Long id);
+    void addIngredient(RecipeIngredient recipeIngredient);
     void addIngredient(Long recipeId, RecipeIngredient recipeIngredient);
+    RecipeIngredient getRecipeIngredient(Long id);
     List<RecipeIngredient> getRecipeIngredients(Long recipeId);
     List<Ingredient> getIngredients(Long recipeId);
+    void removeById(Long id);
+    void removeIngredient(RecipeIngredient recipeIngredient);
 }

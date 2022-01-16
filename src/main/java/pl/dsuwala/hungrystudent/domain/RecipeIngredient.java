@@ -26,6 +26,19 @@ public class RecipeIngredient {
         this.recipeAmount = recipeAmount;
     }
 
+    public RecipeIngredient(Ingredient ingredient, Double recipeAmount, Recipe recipe) {
+        this.ingredient = ingredient;
+        this.recipeAmount = recipeAmount;
+        this.recipe = recipe;
+    }
+
+    public RecipeIngredient(Long id, Ingredient ingredient, Double recipeAmount, Recipe recipe) {
+        this.id = id;
+        this.ingredient = ingredient;
+        this.recipeAmount = recipeAmount;
+        this.recipe = recipe;
+    }
+
     public Long getId() {
         return id;
     }

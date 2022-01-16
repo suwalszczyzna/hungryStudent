@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Przepisy | Głodny student</title>
+</head>
+<body>
+<section class="my-2 card w-100 shadow-sm bg-white">
+    <div class="card-body">
+        <form action="#" th:action="@{/recipes/save}" th:object="${recipe}" method="POST">
+            <h3 th:text="${newRecipe} ? 'Nowy przepis' : ${recipe.name}"></h3>
+            <input type="hidden" th:field="*{id}" required>
+            <div class="form-group mb-3">
+                <label for="recipeName">Nazwa Przepisu</label>
+                <input type="text" th:field="*{name}" class="form-control" id="recipeName" aria-describedby="unitHelp"
+                       placeholder="np. domowe ciasto na pizzę">
+            </div>
+            <div class="form-group mb-3">
+                <label for="timeConsuming">Czas przygotowywania (min)</label>
+                <input required type="text" th:field="*{timeConsuming}" class="form-control" id="timeConsuming"
+                       placeholder="np. 45">
+            </div>
+            <div class="form-group mb-3">
+                <label for="editor">Przepis</label>
+                <textarea required
+                          rows="20"
+                          th:field="*{description}"
+                          class="form-control"
+                          id="editor"
+                >Tu wpisz jak wykonać potrawę</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </form>
+    </div>
+    <script type="text/javascript">
+        var editor = new Simditor({
+            textarea: $('#editor')
+            //optional options
+        });
+    </script>
+</section>
+
+</body>
+</html>

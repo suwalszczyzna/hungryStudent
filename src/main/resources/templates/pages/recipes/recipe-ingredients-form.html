@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Składniki przepisu | Głodny student</title>
+</head>
+<body>
+<section class="my-2 container">
+    <div class="card">
+        <div class="card-header">
+            <h4>
+                <i class="fas fa-carrot"></i>
+                <span th:text="${'Składniki: ' + newRecipeIngredient.recipe.name}"></span>
+            </h4>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:each="recipeIngredient: ${recipeIngredients}">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div>
+                            <strong><span th:remove="tag" th:text="${recipeIngredient.ingredient.name}"></span></strong>:
+                            <span th:remove="tag"
+                                  th:text="${#numbers.formatDecimal(recipeIngredient.recipeAmount, 0, 1)}"></span>
+                            <span th:remove="tag" th:text="${recipeIngredient.ingredient.unit.name}"></span>
+                        </div>
+                        <div>
+                            <a class="btn btn-sm btn-danger"
+                               th:href="@{/recipes/ingredients/delete/{id}(id=${recipeIngredient.id})}">
+                                <i class="fas fa-trash-alt"></i> Usuń
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <form th:action="@{/recipes/edit/{id}/ingredients/save(id=${newRecipeIngredient.recipe.id})}"
+                  th:object="${newRecipeIngredient}"
+                  method="POST">
+                <input type="hidden" th:field="*{id}">
+                <div class="input-group p-3">
+                    <label for="recipeAmount" class="input-group-text">Ilość</label>
+                    <input type="number" min="0" th:field="*{recipeAmount}" class="form-control" id="recipeAmount"
+                           required>
+                    <label for="ingredients" class="input-group-text">Składnik</label>
+                    <select th:field="*{ingredient}" class="form-select" id="ingredients" required>
+                        <option th:each="i : ${allIngredients}"
+                                th:value="${i.id}"
+                                th:text="${i.name + ', ' + i.unit.shortcutName + '. (' + i.unit.name + ')'}"></option>
+                    </select>
+                    <button type="submit" class="btn btn-success">Zapisz</button>
+                </div>
+
+                <a class="btn btn-primary" th:href="@{/recipes/{id}(id=${newRecipeIngredient.recipe.id})}">Zobacz
+                    przepis</a>
+
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>
