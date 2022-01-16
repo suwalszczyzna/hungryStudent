@@ -24,8 +24,8 @@
 
             </div>
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-primary btn-sm">Edytuj</button>
-                <button type="button" class="btn btn-outline-danger btn-sm">Usuń</button>
+                <a class="btn btn-outline-primary btn-sm" th:href="@{/fridge/edit/{id}(id=${fridgeItem.id})}">Edytuj</a>
+<!--                <button type="button" class="btn btn-outline-danger btn-sm">Usuń</button>-->
             </div>
         </li>
     </ul>

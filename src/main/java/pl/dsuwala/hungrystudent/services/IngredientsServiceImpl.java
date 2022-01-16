@@ -24,4 +24,9 @@ public class IngredientsServiceImpl implements IngredientsService{
     public void saveIngredient(Ingredient ingredient) {
         ingredientRepository.save(ingredient);
     }
+
+    @Override
+    public Ingredient getById(Long id) {
+        return ingredientRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Brak produktu o id: " + id));
+    }
 }

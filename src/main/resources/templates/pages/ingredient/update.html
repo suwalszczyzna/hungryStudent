@@ -2,35 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="layout :: layout(~{::title}, ~{::section})">
 <head>
-    <title>Dodaj nowy produkt | Głodny student</title>
+    <title th:text="${'Edytuj ' + ingredient.name + ' | Głodny student'}">Edytuj produkt | Głodny student</title>
 </head>
 <body>
+<section class="my-2">
+    <h1 class="display-4" th:text="${'Edycja produktu: ' + ingredient.name}"></h1>
+</section>
 <section th:fragment="ingredientForm" class="my-2">
     <div class="card">
         <form action="#" th:action="@{/ingredients/save}" th:object="${ingredient}" method="POST" class="row g-3 card-body">
-            <input type="hidden" th:field="*{id}" required>
+            <input type="hidden" th:field="*{id}">
             <div class="col-md-12">
                 <label for="inputName" class="form-label">Nazwa</label>
-                <input th:field="*{name}" type="text" class="form-control" id="inputName" required>
+                <input th:field="*{name}" type="text" class="form-control" id="inputName">
             </div>
             <div class="col-md-2">
                 <label for="inputAmount" class="form-label">Ilość</label>
-                <input th:field="*{amount}" type="number" step="0.1" min="0" class="form-control" id="inputAmount" required>
+                <input th:field="*{amount}" type="number" step="0.1" min="0" class="form-control" id="inputAmount">
             </div>
             <div class="col-md-2">
                 <label for="inputUnit" class="form-label">J.m.</label>
-                <select th:field="*{unit}" id="inputUnit" class="form-select" required>
+                <select disabled th:field="*{unit}" id="inputUnit" class="form-select">
                     <option th:each="unit : ${units}"
                             th:value="${unit.id}"
                             th:text="${unit.shortcutName}">J.m.</option>
                 </select>
             </div>
             <div class="col-md-4 d-flex align-items-end">
-                <a th:href="@{/units}" type="button" class="btn btn-outline-secondary">Zarządzaj jednostkami miary</a>
+                <a th:href="@{/units}" type="button" class="btn btn-outline-primary">Zarządzaj jednostkami miary</a>
             </div>
 
             <div class="col-12">
                 <button type="submit" class="btn btn-success">Zapisz</button>
+                <a th:href="@{/fridge}" class="btn btn-outline-secondary">Anuluj</a>
             </div>
         </form>
     </div>

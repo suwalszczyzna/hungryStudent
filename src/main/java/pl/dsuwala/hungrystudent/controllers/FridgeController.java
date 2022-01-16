@@ -3,6 +3,7 @@ package pl.dsuwala.hungrystudent.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import pl.dsuwala.hungrystudent.domain.Ingredient;
 import pl.dsuwala.hungrystudent.services.FridgeServiceImpl;
 import pl.dsuwala.hungrystudent.services.IngredientsServiceImpl;
@@ -39,5 +40,15 @@ public class FridgeController {
         model.addAttribute("ingredient", new Ingredient());
         model.addAttribute("units", units);
         return "pages/ingredient/ingredientForm";
+    }
+
+
+    @GetMapping(path = "/fridge/edit/{id}")
+    public String getEditForm(@PathVariable(value = "id") long id, Model model) {
+        var ingredient = ingredientsService.getById(id);
+        var units = unitService.getAllUnits();
+        model.addAttribute("ingredient", ingredient);
+        model.addAttribute("units", units);
+        return "pages/ingredient/update";
     }
 }
