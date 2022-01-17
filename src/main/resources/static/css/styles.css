@@ -2,3 +2,21 @@
     width: 100%;
     height: auto;
 }
+
+.header img {
+    width: 300px;
+    height: auto;
+}
+
+.section-img{
+    width: 40%;
+    height: auto;
+}
+
+.index-sections .card{
+    transition: all .3s ease;
+}
+
+.index-sections .card:hover{
+    background: var(--bs-gray-200);
+}

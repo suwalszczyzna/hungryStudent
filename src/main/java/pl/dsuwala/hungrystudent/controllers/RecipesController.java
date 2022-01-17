@@ -35,11 +35,6 @@ public class RecipesController {
             var recipeVM = ViewModelConverter.recipeToVM(i, ingredients);
 
             recipesVM.add(recipeVM);
-            recipesVM.add(recipeVM);
-            recipesVM.add(recipeVM);
-            recipesVM.add(recipeVM);
-            recipesVM.add(recipeVM);
-            recipesVM.add(recipeVM);
         }
 
         model.addAttribute("recipes", recipesVM);

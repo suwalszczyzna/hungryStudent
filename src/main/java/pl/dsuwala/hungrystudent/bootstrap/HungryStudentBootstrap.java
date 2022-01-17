@@ -82,17 +82,6 @@ public class HungryStudentBootstrap implements CommandLineRunner {
         recipeIngredientRepository.save(woda);
         recipeIngredientRepository.save(maka);
 
-        recipeRepository.save(pizza);
-        woda.setRecipe(pizza);
-        maka.setRecipe(pizza);
-        recipeIngredientRepository.save(woda);
-        recipeIngredientRepository.save(maka);
-
-        recipeRepository.save(pizza);
-        woda.setRecipe(pizza);
-        maka.setRecipe(pizza);
-        recipeIngredientRepository.save(woda);
-        recipeIngredientRepository.save(maka);
 
     }
 }

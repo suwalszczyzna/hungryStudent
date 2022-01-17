@@ -6,19 +6,43 @@
 </head>
 <body>
 <section>
-    <h1 class="display-5">Dashboard</h1>
-</section>
-<section>
-    <h1>Lodówka</h1>
-    <button type="button" class="btn btn-primary">Dodaj nowy produkt</button>
-    <div class="my-2">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div th:replace="components/ingredients :: ingredient('Ziemniaki', 'Pyszne polskie pyry', '10', 'kg')"></div>
-            </div>
+    <div class="d-flex header m-3 align-items-center justify-content-center">
+        <div>
+            <h1>Głodny student?</h1>
+            <h3>Ugotuj coś!</h3>
+        </div>
+        <div>
+            <img th:src="@{/assets/glodny_student.svg}" alt="header głodny student">
         </div>
     </div>
 </section>
+<section class="index-sections">
+    <div class="card d-flex flex-row m-3 p-1 align-items-center justify-content-between">
+        <div class="card-body">
+            <h2>Lodówka</h2>
+            <p>Otwórz lodówkę i zaktualizuj produkty</p>
+            <a class="btn btn-primary" th:href="@{/fridge}">Lodówka</a>
+        </div>
+        <img class="section-img" th:src="@{/assets/fridge.png}" alt="ilustracja lodówki">
+    </div>
+    <div class="card d-flex flex-row m-3 p-1 align-items-center justify-content-between">
+        <div class="card-body">
+            <h2>Baza przepisów</h2>
+            <p>To tutaj znajdują się wszystkie twoje pomysły na obiad czy kolację</p>
+            <a class="btn btn-primary" th:href="@{/recipes}">Przepisy</a>
+        </div>
+        <img class="section-img" th:src="@{/assets/recipe.png}" alt="ilustracja przepisów">
+    </div>
+    <div class="card d-flex flex-row m-3 p-1 align-items-center justify-content-between">
+        <div class="card-body">
+            <h2>Gotowanie</h2>
+            <p>Spaghetti po bolońsku czy herbata z wody po parówkach?</br>Sprawdź co możesz ugotować</p>
+            <a class="btn btn-primary" th:href="@{/cooking}">Gotowanie</a>
+        </div>
+        <img class="section-img" th:src="@{/assets/cooking.png}" alt="ilustracja gotowania">
+    </div>
+</section>
+
 
 </body>
 </html>
