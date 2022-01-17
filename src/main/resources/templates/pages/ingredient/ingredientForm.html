@@ -22,7 +22,7 @@
                 <select th:field="*{unit}" id="inputUnit" class="form-select" required>
                     <option th:each="unit : ${units}"
                             th:value="${unit.id}"
-                            th:text="${unit.shortcutName}">J.m.</option>
+                            th:text="${unit.name}">J.m.</option>
                 </select>
             </div>
             <div class="col-md-4 d-flex align-items-end">

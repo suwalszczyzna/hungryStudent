@@ -6,7 +6,13 @@
 </head>
 <body>
 <section class="my-2">
-    <h1>Lodówka</h1>
+    <div class="d-flex flex-row align-items-center justify-content-between">
+        <div class="card-body">
+            <h1>Lodówka</h1>
+            <h3>Jesteś po zakupach? <br>Zaktualizuj posiadane produkty</h3>
+        </div>
+        <img class="section-img" th:src="@{/assets/fridge.png}" alt="ilustracja lodówki">
+    </div>
 </section>
 <section th:replace="pages/ingredient/ingredientForm::ingredientForm"></section>
 <section class="my-2">
@@ -17,7 +23,7 @@
             <div class="d-inline-flex align-items-center">
                 <span th:text="${fridgeItem.name}"></span>
 
-                <span class="badge bg-info badge-pill mx-5">
+                <span class="badge bg-secondary badge-pill mx-5">
                     <span th:text="${fridgeItem.amount}"></span>
                     <span th:text="${fridgeItem.unitShortName}"></span>
                 </span>

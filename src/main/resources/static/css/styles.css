@@ -9,7 +9,7 @@
 }
 
 .section-img{
-    width: 40%;
+    width: 30%;
     height: auto;
 }
 
@@ -19,4 +19,8 @@
 
 .index-sections .card:hover{
     background: var(--bs-gray-200);
+}
+
+.index-sections .card-body{
+    padding-left: 2rem;
 }

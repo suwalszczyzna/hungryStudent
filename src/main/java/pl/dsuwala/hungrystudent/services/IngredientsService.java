@@ -8,4 +8,5 @@ public interface IngredientsService {
     List<Ingredient> getAll();
     void saveIngredient(Ingredient ingredient);
     Ingredient getById(Long id);
+    void reduceAmount(Ingredient ingredient, Double amount);
 }

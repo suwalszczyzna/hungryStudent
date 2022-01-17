@@ -15,6 +15,7 @@ import pl.dsuwala.hungrystudent.utils.ViewModelConverter;
 import pl.dsuwala.hungrystudent.viewmodels.RecipeViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class RecipesController {
@@ -28,17 +29,22 @@ public class RecipesController {
 
     @RequestMapping(value="/recipes", method=RequestMethod.GET)
     public String showAllRecipes(Model model){
-        var recipesVM = new ArrayList<RecipeViewModel>();
         var recipes = recipeService.getAll();
+        ArrayList<RecipeViewModel> recipesVM = recipesToVM(recipes);
+
+        model.addAttribute("recipes", recipesVM);
+        return "pages/recipes/recipes";
+    }
+
+    private ArrayList<RecipeViewModel> recipesToVM(List<Recipe> recipes) {
+        var recipesVM = new ArrayList<RecipeViewModel>();
         for (var i: recipes){
             var ingredients = recipeService.getRecipeIngredients(i.getId());
             var recipeVM = ViewModelConverter.recipeToVM(i, ingredients);
 
             recipesVM.add(recipeVM);
         }
-
-        model.addAttribute("recipes", recipesVM);
-        return "pages/recipes/recipes";
+        return recipesVM;
     }
 
     @RequestMapping(value="/recipes/{id}", method=RequestMethod.GET)

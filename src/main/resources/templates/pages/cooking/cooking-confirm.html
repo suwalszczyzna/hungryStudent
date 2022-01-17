@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Gotowanie | Głodny student</title>
+</head>
+<body>
+<section>
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-row header m-3 align-items-center justify-content-around">
+            <div>
+                <h1>Gotowanie</h1>
+            </div>
+            <div>
+                <img th:src="@{/assets/cooking.png}" alt="ilustracja gotowania">
+            </div>
+        </div>
+        <div class="d-flex mt-3 flex-column justify-content-center align-items-center">
+            <h4 class="text-center">Czy na pewno chcesz ugotować <br> <span th:text="${recipe.name}"></span>?</h4>
+            <p>Poniższe ilości produktów zostaną usunięte z twojej lodówki</p>
+            <ul>
+                <li th:each="ingredient: ${recipe.ingredients}">
+                    <strong><span th:remove="tag" th:text="${ingredient.name}"></span></strong>:
+                    <span th:remove="tag"
+                          th:text="${#numbers.formatDecimal(ingredient.recipeAmount, 0, 1)}"></span>
+                    <span th:remove="tag" th:text="${ingredient.unitName}"></span>.
+                </li>
+            </ul>
+            <div class="d-flex gap-3 mt-2 flex-row align-items-center justify-content-center">
+                <a th:href="@{/cooking/}" class="btn btn-outline-secondary">Wróć do listy gotowania</a>
+                <a th:href="@{/cooking/{id}/cook(id=${recipe.id})}" class="btn btn-success">
+                    <i class="fas fa-utensils"></i> Gotujemy!
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

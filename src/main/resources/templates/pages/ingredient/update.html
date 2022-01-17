@@ -6,7 +6,7 @@
 </head>
 <body>
 <section class="my-2">
-    <h1 class="display-4" th:text="${'Edycja produktu: ' + ingredient.name}"></h1>
+    <h1>Edycja produktu</h1>
 </section>
 <section th:fragment="ingredientForm" class="my-2">
     <div class="card">
@@ -22,13 +22,14 @@
             </div>
             <div class="col-md-2">
                 <label for="inputUnit" class="form-label">J.m.</label>
-                <select disabled th:field="*{unit}" id="inputUnit" class="form-select">
+                <p class="form-select bg-secondary bg-opacity-25" th:text="${ingredient.unit.name}">kg</p>
+                <select hidden th:field="*{unit}" id="inputUnit" class="form-select">
                     <option th:each="unit : ${units}"
                             th:value="${unit.id}"
                             th:text="${unit.shortcutName}">J.m.</option>
                 </select>
             </div>
-            <div class="col-md-4 d-flex align-items-end">
+            <div class="col-md-4 d-flex align-items-center">
                 <a th:href="@{/units}" type="button" class="btn btn-outline-primary">Zarządzaj jednostkami miary</a>
             </div>
 

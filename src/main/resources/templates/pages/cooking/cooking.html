@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Gotowanie | Głodny student</title>
+</head>
+<body>
+<section>
+    <div class="d-flex header m-3 align-items-center justify-content-between">
+        <div>
+            <h1>Gotowanie</h1>
+            <h3>Możesz ugotować poniższe potrawy</h3>
+        </div>
+        <div>
+            <img th:src="@{/assets/cooking.png}" alt="ilustracja gotowania">
+        </div>
+    </div>
+</section>
+<section>
+    <div th:remove="tag" th:each="recipe: ${recipes}">
+        <div th:replace="fragments/recipeCard.html:: recipeCard(recipe=${recipe}, cooking='T')"></div>
+    </div>
+</section>
+</body>
+</html>

@@ -29,4 +29,11 @@ public class IngredientsServiceImpl implements IngredientsService{
     public Ingredient getById(Long id) {
         return ingredientRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Brak produktu o id: " + id));
     }
+
+    @Override
+    public void reduceAmount(Ingredient ingredient, Double amountToReduce) {
+        var actualAmount = ingredient.getAmount();
+        ingredient.setAmount(actualAmount - amountToReduce);
+        ingredientRepository.save(ingredient);
+    }
 }
